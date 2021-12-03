@@ -1,6 +1,10 @@
 # Aoc2021
 
-**TODO: Add description**
+To run a certain exercise for a certain day:
+
+```
+mix aoc.solve Day3b
+```
 
 ## Installation
 
