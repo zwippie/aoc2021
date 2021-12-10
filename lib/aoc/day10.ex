@@ -1,6 +1,6 @@
 defmodule Aoc.Day10a do
   def run do
-    load("input/day10.txt")
+    load("input/aoc-2021-day10-up4.txt")
     |> Enum.map(&evaluate/1)
     |> corrupt_score()
   end
@@ -25,6 +25,7 @@ defmodule Aoc.Day10a do
 
   defp corrupt_score(results) do
     Enum.reduce(results, 0, fn
+      :valid, acc -> acc
       {:incomplete, _}, acc -> acc
       {:corrupt, ?)}, acc -> acc + 3
       {:corrupt, ?]}, acc -> acc + 57
@@ -54,7 +55,7 @@ defmodule Aoc.Day10b do
   import Aoc.Day10a, except: [run: 0]
 
   def run do
-    load("input/day10.txt")
+    load("input/aoc-2021-day10-up4.txt")
     |> Enum.map(&evaluate/1)
     |> incomplete_scores()
     |> middle_score()
@@ -62,6 +63,7 @@ defmodule Aoc.Day10b do
 
   defp incomplete_scores(results) do
     Enum.flat_map(results, fn
+      :valid -> [0]
       {:corrupt, _} -> []
       {:incomplete, open_tags} -> [incomplete_score(open_tags, 0)]
     end)
@@ -71,6 +73,7 @@ defmodule Aoc.Day10b do
     middle = floor(length(scores) / 2)
     scores
     |> Enum.sort()
+    |> IO.inspect(label: "scores")
     |> Enum.at(middle)
   end
 
