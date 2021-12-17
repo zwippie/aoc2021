@@ -19,10 +19,9 @@ defmodule Aoc.Day15a do
 
       Graph.add_edges(graph, edges)
     end)
-    # |> Graph.a_star({0, 0}, end_pos, fn pos2 ->
-    #   manhattan_distance(pos2, end_pos)
-    # end)
-    |> Graph.dijkstra({0, 0}, end_pos)
+    |> Graph.a_star({0, 0}, end_pos, fn pos2 ->
+      manhattan_distance(pos2, end_pos)
+    end)
     |> tl() # skip start
     # |> IO.inspect(label: "route")
     |> Enum.reduce(0, fn pos, acc ->
